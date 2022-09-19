@@ -61,7 +61,9 @@ Trong đó:
 
     - Bước 6: Lặp lại bước 4 và bước 5 cho đến khi nào khoanh tròn được n số 0 và cũng có n đường thẳng và bài toán có lời giải tối ưu.
 
-
+## Các phương pháp của heuristic: 
+- Palmer heuristic
+- CDS and NEH heuristic
 
 
 
