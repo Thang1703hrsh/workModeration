@@ -59,7 +59,9 @@ Trong đó:
 
     - Bước 5: Khôi phục bảng phân việc (tạo thêm số 0). Tìm số nhỏ nhất trong các số không nằm trên các đường thẳng đã kẻ. Lấy các số không nằm trên đường thẳng đã kẻ trừ đi số đó. Cộng số nhỏ nhất đó với số nằm trên giao điểm các đường thẳng, còn các số khác giữ nguyên.
 
-    - Bước 6: Lặp lại bước 4 và bước 5 cho đến khi nào khoanh tròn được n số không và cũng có n đường thẳng và bài toán có lời giải tối ưu.
+    - Bước 6: Lặp lại bước 4 và bước 5 cho đến khi nào khoanh tròn được n số 0 và cũng có n đường thẳng và bài toán có lời giải tối ưu.
+
+
 
 
 
