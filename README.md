@@ -62,19 +62,27 @@ Trong đó:
     - Bước 6: Lặp lại bước 4 và bước 5 cho đến khi nào khoanh tròn được n số 0 và cũng có n đường thẳng và bài toán có lời giải tối ưu.
 
 ## Các phương pháp của heuristic: 
-- Palmer heuristic
-- CDS and NEH heuristic
+1. Palmer heuristic: Tìm giá trị nhỏ nhất trong mỗi cột
+    - Bước 1: Với N tổ, chúng ta sẽ giả sử N bộ số w sao cho tổ ở giữa luôn có giá trị 0, và 2 bên đối xứng, tức w mid = 0
+            Qua J sản phẩm, mỗi sản phẩm sẽ được nhân với bộ số w giống mạng dense, Sinh ra cột pw chứa giá trị tổng của mỗi sản phẩm nhân với w
+    - Bước 2: Sắp xếp bộ giá trị tổng pw giảm dần, khi đó được thứ tự công việc 
+1.1 Phương pháp chặn dưới của Palmer heuristic (Lower Bound of Palmer Heuristic):
+    - Bước 1: Tính tổng của mỗi cột, tức tính tổng thời gian làm tất cả các sản phẩm tại 1 tổ
+    - Bước 2: Tính giá trị LB1 = Tổng cột 1 + min { Tổng các hàng của cột còn lại } (Với LB1 là giá trị tại cột đầu tiên)
+    - Bước 3: Với LB2 là giá trị giữa = Tổng cột p2 + min {giá trị cột trước} + min {Tổng các hàng của các cột còn lại hoặc giá trị 1 cột sau}
+              Với LBn là giá trị giữa = Tổng pn + min{Tổng các hàng của các cột trước} + min{Tổng các hàng của các cột sau}
+    - Bước 4: Sau khi có {LB}: Tìm max của tập hợp LB
+    
+    Makespan = max LB 
+2. NEH heuristic: 
+    - Bước 1: Tính tổng p của mỗi hàng, tức thời gian làm mỗi sản phẩm
+    - Bước 2: Sắp xếp chuỗi theo thứ tự giảm dần của tổng p (chuỗi F)
+    - Bước 3: So sánh 2 sản phẩm và xét lại thứ tự, tổng thời gian làm cho hai sản phẩm và sắp xếp lại thứ tự sản phẩm
+    - Bước 3: Xét vào chuỗi F ban đầu sau đó lấy sản phẩm tiếp theo của 2 sản phẩm trên đấy, giao hoán vị trí của sản phẩm thứ 3 và xét tổng thời 
+    gian làm cho 3 sản phẩm, sắp xếp lại thứ tự sản phẩm thứ 3
+    - Bước 4: Lặp lại Bước 3 cho tới khi hết sản phẩm
 
+## Tham khảo: 
+- https://lytuong.net/dieu-do-san-xuat/
+- https://arxiv.org/ftp/arxiv/papers/1407/1407.5931.pdf#:~:text=The%20flowshop%20scheduling%20problem%20is,permutation%20flowshop%20sequencing%20production%20environment.
 
-
-
-
-
-
-
-
-
-
-
-
-## Tham khảo: https://lytuong.net/dieu-do-san-xuat/
