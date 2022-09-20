@@ -47,13 +47,13 @@ class Flowshop(object):
                 "Johnson's algorithm chỉ giải quyết cho vấn đề 2 tổ"
             )
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.process_time()
+        default_timer = time.process_time()
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.process_time()
 
-        # s = default_timer.__call__()
-        s = 0
+        s = default_timer.__float__()
         # Build optimal sequence array
         machine_1_sequence = [j for j in range(
             self.nb_jobs) if self.data[0][j] <= self.data[1][j]]
@@ -62,8 +62,7 @@ class Flowshop(object):
             self.nb_jobs) if self.data[0][j] > self.data[1][j]]
         machine_2_sequence.sort(key=lambda x: self.data[1][x], reverse=True)
         seq = machine_1_sequence + machine_2_sequence
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
         jobs_m1, jobs_m2 = [], []
         job_name_rad = "job_"
         job = {"name": job_name_rad +
@@ -133,12 +132,13 @@ class Flowshop(object):
             data_ndarray = self.data
         data_transposed = data_ndarray.T
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.time
-        # s = default_timer.__call__()
-        s = 0
+        default_timer = time.process_time()
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.time
+
+        s = default_timer.__float__()
         merged_times = [[0, sum(j_t)] for j_t in data_transposed]
         perms = []
         for i in range(0, self.nb_machines-1):
@@ -149,8 +149,7 @@ class Flowshop(object):
         
         seq = min(perms, key=lambda p: self._get_makespan(p, self.data))
 
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
 
         schedules = np.zeros((self.nb_machines, self.nb_jobs), dtype=dict)
         # schedule first job alone first
@@ -191,12 +190,12 @@ class Flowshop(object):
         def palmer_f(x): return -(self.nb_machines - (2*x - 1))
         
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.time
-        # s = default_timer.__call__()
-        s = 0
+        default_timer = time.process_time()
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.time
+        s = default_timer.__float__()
         
         weights = list(map(palmer_f, range(1, self.nb_machines+1)))
         ws = []
@@ -206,8 +205,8 @@ class Flowshop(object):
             ws.append((job_id, p_ij))
         ws.sort(key=lambda x: x[1], reverse=True)
         h_seq = [x[0] for x in ws]
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
+
         schedules = np.zeros((self.nb_machines, self.nb_jobs), dtype=dict)
         # schedule first job alone first
         task = {"name": "job_{}".format(
@@ -259,12 +258,13 @@ class Flowshop(object):
     def neh_heuristic(self):
         sums = []
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.time
-        # s = default_timer.__call__()
-        s = 0
+        default_timer = time.process_time()
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.time
+
+        s = default_timer.__float__()
 
         for job_id in range(self.nb_jobs):
             p_ij = sum([self.data[j][job_id]
@@ -279,8 +279,7 @@ class Flowshop(object):
                 cands.append((cand, self._get_makespan(cand, self.data)))
             seq = min(cands, key=lambda x: x[1])[0]
 
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
 
         schedules = np.zeros((self.nb_machines, self.nb_jobs), dtype=dict)
         # schedule first job alone first
@@ -316,18 +315,18 @@ class Flowshop(object):
     # 4. Phương pháp brute_force_exact metaheuristic
     def brute_force_exact(self):
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.time
-        # s = default_timer.__call__()
-        s = 0
+        default_timer = time.process_time()
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.time
+
+        s = default_timer.__float__()
 
         jobs_perm = permutations(range(self.nb_jobs))
         seq = min(jobs_perm, key=lambda x: self._get_makespan(x, self.data))
         
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
 
         schedules = np.zeros((self.nb_machines, self.nb_jobs), dtype=dict)
         # schedule first job alone first
@@ -363,12 +362,13 @@ class Flowshop(object):
             population_number = self.nb_jobs**2
             
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.time
-        # s = default_timer.__call__()
-        s = 0
+        default_timer = time.process_time() 
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.time
+
+        s = default_timer.__float__()
         optimal = [4534, 920, 1302]
         opt = 0
         no_of_jobs, no_of_machines = self.nb_jobs, self.nb_machines
@@ -427,8 +427,7 @@ class Flowshop(object):
 
         seq = list(map(int, costed_population[0][1]))
         makespan = self._get_makespan(seq, self.data)
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
         if nograph:
             t_t = e - s
             return seq, None, makespan, t_t  
@@ -465,17 +464,19 @@ class Flowshop(object):
         seq[pos1], seq[pos2] = seq[pos2], seq[pos1]
         return seq
         
-    # 4. Phương pháp Simulated Annealing metaheuristic    
+    # 5. Phương pháp Simulated Annealing metaheuristic    
     def simulated_annealing(self,Ti = 790,Tf = 3 ,alpha = 0.93):
         #Number of jobs given
         n = self.nb_jobs
         default_timer = None
-        if sys.platform == "win32":
-            default_timer = time.process_time()
-        else:
-            default_timer = time.time
-        # s = default_timer.__call__()
-        s = 0
+        
+        default_timer = time.process_time()
+        # if sys.platform == "win32":
+        #     default_timer = time.process_time()
+        # else:
+        #     default_timer = time.time
+
+        s = default_timer.__float__()
         #Initialize the primary seq
         old_seq,schedules,old_makeSpan, _ = self.palmer_heuristic()
         new_seq = []       
@@ -506,8 +507,7 @@ class Flowshop(object):
             T = T * alpha 
             temp_cycle += 1
 
-        # e = default_timer.__call__()
-        e = 0
+        e = default_timer.__float__()
 
         #Result Sequence
         seq = old_seq
