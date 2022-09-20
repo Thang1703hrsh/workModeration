@@ -1,4 +1,6 @@
 # Cơ sở lý thuyết:
+- Makespan: Đối với M công việc và N tổ làm việc thì việc sắp xếp thời gian tối ưu nhất là cần thiết, và Makespan là thời gian tối ưu của 
+công việc.
 ## Một số nguyên tắc chính trong sắp xếp thứ tự công việc:
 - Công việc đặt hàng trước làm trước
 - Công việc có thời gian giới hạn giao hàng trước làm trước
@@ -81,6 +83,29 @@ Trong đó:
     - Bước 3: Xét vào chuỗi F ban đầu sau đó lấy sản phẩm tiếp theo của 2 sản phẩm trên đấy, giao hoán vị trí của sản phẩm thứ 3 và xét tổng thời 
     gian làm cho 3 sản phẩm, sắp xếp lại thứ tự sản phẩm thứ 3
     - Bước 4: Lặp lại Bước 3 cho tới khi hết sản phẩm
+
+## Các phương pháp của metaheuristic: 
+1. Tìm kiếm không gian trạng thái và thuật toán Simulated Annealing
+    - Xét ví dụ: Có n thành phố A = {0,1,2,3,...,n}
+    Thuật toán được trình bày như sau :
+
+```
+For t = 1 to m
+1. Chọn ngẫu nhiên y ∈ N(x)
+a) tính Δ(x,y) = Obj(y) – Obj(x) 
+b) if Δ(x,y) < 0 then p = 1
+c) else p = exp(−Δ(x,y)/T)
+d) if rand[0,1] < p then x ← y. // lời giải y tốt hơn x
+e) if Obj(x) < Obj(x*) then x* ← x // chuyển sang y với xác suất p. 
+
+2. giảm T theo sơ đồ C
+return x* //x* là trạng thái tốt nhất trong số những trạng thái đã xem xét
+```
+
+2. Thuật toán trâu bò Brute force
+Nhược điểm: Thời gian tính toán lâu, lượng dữ liệu lớn khó có thể giải quyết nhanh chóng được
+Ưu điểm: Dễ sử dụng
+
 
 ## Tham khảo: 
 - https://lytuong.net/dieu-do-san-xuat/
